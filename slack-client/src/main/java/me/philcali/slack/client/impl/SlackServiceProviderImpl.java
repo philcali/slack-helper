@@ -34,7 +34,12 @@ public class SlackServiceProviderImpl implements ISlackServiceProvider {
     }
 
     @Override
-    public <T> EventData<T> convert(InputStream input, Class<T> inputClass) throws IOException {
+    public <T> T convert(InputStream input, Class<T> inputClass) throws IOException {
+        return mapper.readValue(input, inputClass);
+    }
+
+    @Override
+    public <T> EventData<T> convertEvent(InputStream input, Class<T> inputClass) throws IOException {
         return mapper.readValue(input, mapper.getTypeFactory()
                 .constructParametricType(EventData.class, inputClass));
     }

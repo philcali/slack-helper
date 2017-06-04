@@ -9,10 +9,16 @@ import java.util.Optional;
 import me.philcali.slack.data.EventData;
 
 public interface ISlackServiceProvider {
-    <T> EventData<T> convert(InputStream input, Class<T> inputClass) throws IOException;
+    <T> T convert(InputStream input, Class<T> inputClass) throws IOException;
 
-    default <T> EventData<T> convert(String payload, Class<T> inputClass) throws IOException {
+    default <T> T convert(String payload, Class<T> inputClass) throws IOException {
         return convert(new ByteArrayInputStream(payload.getBytes(StandardCharsets.UTF_8)), inputClass);
+    }
+
+    <T> EventData<T> convertEvent(InputStream input, Class<T> inputClass) throws IOException;
+
+    default <T> EventData<T> convertEvent(String payload, Class<T> inputClass) throws IOException {
+        return convertEvent(new ByteArrayInputStream(payload.getBytes(StandardCharsets.UTF_8)), inputClass);
     }
 
     default ISlackService getService() {
