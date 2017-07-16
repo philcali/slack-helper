@@ -7,6 +7,7 @@ import me.philcali.slack.data.channel.ChannelsInfo;
 import me.philcali.slack.data.channel.ChannelsList;
 import me.philcali.slack.data.message.MessageData;
 import me.philcali.slack.data.oauth.OAuthAccess;
+import me.philcali.slack.data.user.Identity;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
@@ -78,4 +79,8 @@ public interface ISlackService {
             @Field("client_secret") String clientSecret,
             @Field("code") String code,
             @Field(encoded = true, value = "redirect_uri") String redirectUrl);
+
+    @FormUrlEncoded
+    @POST("api/users.identity")
+    Call<Identity> usersIdentity();
 }

@@ -11,6 +11,7 @@ public class User {
     private boolean admin;
     private boolean owner;
     private long updated;
+    private String email;
 
     public String getColor() {
         return color;
@@ -74,5 +75,13 @@ public class User {
 
     public void setUpdated(long updated) {
         this.updated = updated;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

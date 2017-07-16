@@ -1,8 +1,12 @@
 package me.philcali.slack.data.oauth;
 
+import me.philcali.oauth.api.IToken;
 import me.philcali.slack.data.SlackData;
 
-public class OAuthAccess extends SlackData {
+public class OAuthAccess extends SlackData implements IToken {
+    private static final String APPLICATION = "SLACK";
+    private static final String TOKEN_TYPE = "request";
+
     private String accessToken;
     private String scope;
     private String teamName;
@@ -10,8 +14,14 @@ public class OAuthAccess extends SlackData {
     private WebhookAuth incomingWebhook;
     private BotAuth bot;
 
+    @Override
     public String getAccessToken() {
         return accessToken;
+    }
+
+    @Override
+    public String getApi() {
+        return APPLICATION;
     }
 
     public BotAuth getBot() {
@@ -32,6 +42,11 @@ public class OAuthAccess extends SlackData {
 
     public String getTeamName() {
         return teamName;
+    }
+
+    @Override
+    public String getTokenType() {
+        return TOKEN_TYPE;
     }
 
     public void setAccessToken(String accessToken) {

@@ -9,9 +9,9 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 
+import me.philcali.oauth.api.ClientConfig;
 import me.philcali.slack.client.ISlackService;
 import me.philcali.slack.client.ISlackServiceProvider;
-import me.philcali.slack.client.SlackClientConfig;
 import me.philcali.slack.data.EventData;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -19,14 +19,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class SlackServiceProviderImpl implements ISlackServiceProvider {
+    public static final String API_HOST = "slack.com";
     private final ObjectMapper mapper;
-    private final SlackClientConfig config;
+    private final ClientConfig config;
 
-    public SlackServiceProviderImpl() {
-        this(new SlackClientConfig(), new ObjectMapper());
+    public SlackServiceProviderImpl(final ClientConfig config) {
+        this(config, new ObjectMapper());
     }
 
-    public SlackServiceProviderImpl(final SlackClientConfig config, final ObjectMapper mapper) {
+    public SlackServiceProviderImpl(final ClientConfig config, final ObjectMapper mapper) {
         this.config = config;
         this.mapper = mapper.copy();
         this.mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
@@ -66,7 +67,7 @@ public class SlackServiceProviderImpl implements ISlackServiceProvider {
                 .addConverterFactory(JacksonConverterFactory.create(mapper))
                 .baseUrl(new HttpUrl.Builder()
                         .scheme("https")
-                        .host(config.getHost())
+                        .host(API_HOST)
                         .build())
                 .build();
 
