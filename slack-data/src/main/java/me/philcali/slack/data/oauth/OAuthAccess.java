@@ -1,6 +1,6 @@
 package me.philcali.slack.data.oauth;
 
-import me.philcali.oauth.api.IToken;
+import me.philcali.oauth.api.model.IToken;
 import me.philcali.slack.data.SlackData;
 
 public class OAuthAccess extends SlackData implements IToken {

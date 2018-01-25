@@ -1,6 +1,6 @@
 package me.philcali.slack.data.user;
 
-import me.philcali.oauth.api.IProfile;
+import me.philcali.oauth.api.model.IProfile;
 import me.philcali.slack.data.SlackData;
 
 public class Identity extends SlackData implements IProfile {

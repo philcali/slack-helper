@@ -5,9 +5,9 @@ import java.io.InputStream;
 import java.util.Optional;
 import java.util.StringJoiner;
 
-import me.philcali.oauth.api.ClientConfig;
-import me.philcali.oauth.api.IToken;
 import me.philcali.oauth.api.exception.AuthException;
+import me.philcali.oauth.api.model.IClientConfig;
+import me.philcali.oauth.api.model.IToken;
 import me.philcali.slack.client.ISlackIntegration;
 import me.philcali.slack.client.ISlackService;
 import me.philcali.slack.client.ISlackServiceProvider;
@@ -19,13 +19,13 @@ import okhttp3.HttpUrl;
 
 public class SlackIntegrationImpl implements ISlackIntegration {
     private ISlackServiceProvider provider;
-    private ClientConfig config;
+    private IClientConfig config;
 
-    public SlackIntegrationImpl(final ClientConfig config) {
+    public SlackIntegrationImpl(final IClientConfig config) {
         this(config, new SlackServiceProviderImpl(config));
     }
 
-    public SlackIntegrationImpl(final ClientConfig config, ISlackServiceProvider provider) {
+    public SlackIntegrationImpl(final IClientConfig config, ISlackServiceProvider provider) {
         this.config = config;
         this.provider = provider;
     }

@@ -39,5 +39,10 @@
   		<artifactId>commons-codec</artifactId>
   		<version>1.9</version>
   	</dependency>
+  	<dependency>
+  		<groupId>me.philcali.oauth</groupId>
+  		<artifactId>oauth-spi</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
 </project>
